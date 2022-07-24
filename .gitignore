@@ -127,4 +127,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-src/res/steam_id.txt
