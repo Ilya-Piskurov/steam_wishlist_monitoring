@@ -52,6 +52,19 @@ class SWGui:
         )
         userInfo.pack()
 
+        self.sales_frame = tk.LabelFrame(
+            self.window,
+            text       = 'Sales',
+            background = '#434c5e',
+            foreground = '#bf616a',
+            font       = (16),
+            height     = 150,
+        )
+        self.sales_frame.pack(expand=True, fill=tk.BOTH)
+
+        scrollbar_sf = tk.Scrollbar(self.sales_frame)
+        scrollbar_sf.pack(side = tk.RIGHT, fill = tk.Y)
+
         self.wishlist_frame = tk.LabelFrame(
             self.window,
             text       = 'Your Wishlist',
@@ -62,15 +75,8 @@ class SWGui:
         )
         self.wishlist_frame.pack(expand=True, fill=tk.BOTH)
 
-        self.sales_frame = tk.LabelFrame(
-            self.window,
-            text       = 'Sales',
-            background = '#434c5e',
-            foreground = '#bf616a',
-            font       = (16),
-            height     = 150,
-        )
-        self.sales_frame.pack(expand=True, fill=tk.BOTH)
+        scrollbar_wf = tk.Scrollbar(self.wishlist_frame)
+        scrollbar_wf.pack(side = tk.RIGHT, fill = tk.Y)
 
         if self.steam_id != 'Undefined':
             self.wishlist = sw.SteamWishlist(self.steam_id).get_wishlist()

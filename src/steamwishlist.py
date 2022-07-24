@@ -21,7 +21,7 @@ class SteamWishlist:
             os._exit(0)
         self.wishlist = self.wishlist_to_dict(wishlist)
 
-    def print_wishlist(self):
+    def debug_print_wishlist(self):
         '''
         Виводить у консоль список бажаного.
         '''
