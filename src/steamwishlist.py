@@ -28,7 +28,7 @@ class SteamWishlist:
         for name in self.wishlist.keys():
             print(name.ljust(self.console_max_len) + "Price = " + self.wishlist[name][0])
 
-    def wishlist_to_dict(self, data):
+    def wishlist_to_dict(self, data) -> dict:
         '''
         Формотує json-об'єкт у словник {ім'я гри: [ціна, розпродаж, процент]}
         '''
@@ -47,6 +47,6 @@ class SteamWishlist:
             wishlist[name] = [price, sale, percentage]
         return wishlist
 
-    def get_wishlist(self):
+    def get_wishlist(self) -> dict:
         self.download_wishlist()
         return self.wishlist

@@ -31,6 +31,7 @@ class SWGui:
             foreground = '#bf616a',
             font       = (16),
         )
+        self.edit_id_box.insert(0, self.steam_id)
         self.edit_id_box.pack()
 
         self.refresh_id_button = tk.Button(
@@ -45,7 +46,7 @@ class SWGui:
 
         userInfo = tk.Label(
             self.steam_id_frame,
-            text = "Enter steam_id and click Refresh ID and Refresh Data",
+            text = 'Enter steam_id and click "Refresh ID" and "Refresh Data"',
             foreground = '#a3be8c',
             background = '#434c5e',
         )
@@ -71,7 +72,7 @@ class SWGui:
         )
         self.sales_frame.pack(expand=True, fill=tk.BOTH)
 
-        if self.steam_id != 'no':
+        if self.steam_id != 'Undefined':
             self.wishlist = sw.SteamWishlist(self.steam_id).get_wishlist()
             self.draw_info_about_wishlist()
 
@@ -157,6 +158,6 @@ class SWGui:
             steam_id = f.readline()
             f.close()
         except:
-            steam_id = 'no'
+            steam_id = 'Undefined'
 
         return steam_id
