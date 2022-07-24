@@ -94,7 +94,7 @@ class SWGui:
 
     def draw_info_about_wishlist(self):
         '''
-        Виводить інфу про ваш список бажаного у визначені фрейми.
+        Виводить інфу про ваш список бажаного у визначені лістбокси.
         '''
         self.sales_listbox = tk.Listbox(
             self.sales_frame,
@@ -175,6 +175,10 @@ class SWGui:
         self.window.mainloop()
 
     def read_steam_id(self) -> str:
+        '''
+        Намагається прочитати steam_id з файлу res/steam_id.txt
+        Якщо невадача, то повертає строку "Undefined"
+        '''
         dirname = os.path.dirname(__file__)
         filename = dirname + '\\res\\steam_id.txt'
 

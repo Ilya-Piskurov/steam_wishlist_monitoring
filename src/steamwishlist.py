@@ -12,7 +12,7 @@ class SteamWishlist:
     def download_wishlist(self):
         '''
         Завантжує json-об'єкт з списком бажаного, і зберігає у поле
-        класу у форматі словник { ім'я гри: ціна }
+        класу у форматі словник {ім'я гри: [ціна, розпродаж, процент]}
         '''
         try:
             wishlist = json.loads(requests.get(self.steam_api_get_wishlist).text)
@@ -48,5 +48,8 @@ class SteamWishlist:
         return wishlist
 
     def get_wishlist(self) -> dict:
+        '''
+        Повертає список бажаного
+        '''
         self.download_wishlist()
         return self.wishlist
