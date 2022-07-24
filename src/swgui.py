@@ -15,6 +15,7 @@ class SWGui:
         self.window.geometry('500x600')
         self.window.configure(background = '#434c5e')
 
+        #steam_id_frame
         self.steam_id_frame = tk.LabelFrame(
             self.window,
             text       = 'Steam ID',
@@ -51,7 +52,9 @@ class SWGui:
             background = '#434c5e',
         )
         userInfo.pack()
+        #steam_id_frame
 
+        #sales_frame
         self.sales_frame = tk.LabelFrame(
             self.window,
             text       = 'Sales',
@@ -61,10 +64,9 @@ class SWGui:
             height     = 150,
         )
         self.sales_frame.pack(expand=True, fill=tk.BOTH)
+        #sales_id_frame
 
-        #scrollbar_sf = tk.Scrollbar(self.sales_frame)
-        #scrollbar_sf.pack(side = tk.RIGHT, fill = tk.Y)
-
+        #wishlist_id_frame
         self.wishlist_frame = tk.LabelFrame(
             self.window,
             text       = 'Your Wishlist',
@@ -74,9 +76,7 @@ class SWGui:
             height     = 300
         )
         self.wishlist_frame.pack(expand=True, fill=tk.BOTH)
-
-        #scrollbar_wf = tk.Scrollbar(self.wishlist_frame)
-        #scrollbar_wf.pack(side = tk.RIGHT, fill = tk.Y)
+        #wishlist_id_frame
 
         if self.steam_id != 'Undefined':
             self.wishlist = sw.SteamWishlist(self.steam_id).get_wishlist()
@@ -96,33 +96,46 @@ class SWGui:
         '''
         Виводить інфу про ваш список бажаного у визначені фрейми.
         '''
-        scrollbar_sf = tk.Scrollbar(self.sales_frame)
-        scrollbar_sf.pack(side = tk.RIGHT, fill = tk.Y)
+        self.sales_listbox = tk.Listbox(
+            self.sales_frame,
+            background = '#434c5e',
+            foreground = '#ebcb8b',
+            font       = (16)
+        )
+        self.sales_listbox.pack(side = tk.LEFT, fill = tk.BOTH, expand=True)
 
-        scrollbar_wf = tk.Scrollbar(self.wishlist_frame)
-        scrollbar_wf.pack(side = tk.RIGHT, fill = tk.Y)
+        self.scrollbar_sf = tk.Scrollbar(self.sales_listbox)
+        self.scrollbar_sf.pack(side = tk.RIGHT, fill = tk.BOTH)
+
+        self.sales_listbox.config(yscrollcommand = self.scrollbar_sf.set)
+        self.scrollbar_sf.config(command = self.sales_listbox.yview)
+
+        self.wishlist_listbox = tk.Listbox(
+            self.wishlist_frame,
+            background = '#434c5e',
+            foreground = '#ebcb8b',
+            font       = (16)
+        )
+        self.wishlist_listbox.pack(side = tk.LEFT, fill = tk.BOTH, expand=True)
+
+        self.scrollbar_wf = tk.Scrollbar(self.wishlist_listbox)
+        self.scrollbar_wf.pack(side = tk.RIGHT, fill = tk.BOTH)
+
+        self.wishlist_listbox.config(yscrollcommand = self.scrollbar_wf.set)
+        self.scrollbar_wf.config(command = self.wishlist_listbox.yview)
 
         for key in self.wishlist.keys():
-            label = tk.Label(
-                self.wishlist_frame,
-                text = key + "  || " + self.wishlist[key][0] + " ||",
-                foreground = '#ebcb8b',
-                background = '#434c5e',
-                font       = (14)
+            self.wishlist_listbox.insert(
+                tk.END, "||  " + self.wishlist[key][0] + "  ||" + " - " + key
             )
-            label.pack()
         
         for key in self.wishlist.keys():
             if self.wishlist[key][1]:
-                label = tk.Label(
-                    self.sales_frame,
-                    text = key + "  || " + self.wishlist[key][0] + " , " +
-                        " SALE: " + str(self.wishlist[key][2]) + "% ||",
-                    foreground = '#ebcb8b',
-                    background = '#434c5e',
-                    font       = (14)
+                self.sales_listbox.insert(
+                    tk.END, "||  " + self.wishlist[key][0] + " , " +
+                    " SALE: " + str(self.wishlist[key][2]) + "%  ||" + 
+                    " - " + key
                 )
-                label.pack()
 
     def click_refresh_id(self):
         '''
