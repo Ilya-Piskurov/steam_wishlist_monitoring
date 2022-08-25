@@ -1,4 +1,5 @@
-// Програма для моніторингу вашого списку бажаного у Steam
+// A program that allows you to price changes and discounts on your
+// Steam wishlist
 package main
 
 func main() {
@@ -12,7 +13,3 @@ func firstRun() {
 		SaveSteamId("Enter your steamId here.")
 	}
 }
-
-// TODO
-// 1. Англійська документація.
-// 2. Сортування за скидками.

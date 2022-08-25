@@ -7,10 +7,10 @@ import (
 	"sort"
 )
 
-// Тип, який представляє собою масив структур, що характеризують ігри.
+// The type that represents an array of game information structures
 type UserWishlist []GameInfo
 
-//
+// The type of game information structures
 type GameInfo struct {
 	Name string `json:"name"`
 	Subs []struct {
@@ -19,7 +19,7 @@ type GameInfo struct {
 	} `json:"subs"`
 }
 
-// Перетворює мапу зі структурами на масив.
+// Turns map into an array
 func mapToArrayWishlist(mapWishlist map[string]GameInfo) UserWishlist {
 	userWishlist := make(UserWishlist, len(mapWishlist))
 	i := 0
@@ -30,7 +30,7 @@ func mapToArrayWishlist(mapWishlist map[string]GameInfo) UserWishlist {
 	return userWishlist
 }
 
-// Формує кінечну форму посилання, для цього приймає steam_id користувача.
+// Forms the final link, takes steamId
 func wishlistEndpoint(userSteamId string) string {
 	return fmt.Sprintf(
 		"https://store.steampowered.com/wishlist/profiles/%s/wishlistdata/",
@@ -38,7 +38,7 @@ func wishlistEndpoint(userSteamId string) string {
 	)
 }
 
-// Повертає сформований список бажаного, вимагає steam_id користувача.
+// Returns the generated wish list, takes steamId
 func GetUserWishlist(userSteamId string) (UserWishlist, error) {
 	resp, err := http.Get(wishlistEndpoint(userSteamId))
 	if err != nil {
@@ -57,7 +57,7 @@ func GetUserWishlist(userSteamId string) (UserWishlist, error) {
 	return arrWishlist, nil
 }
 
-// Для сортування UserWishlist
+// For sort UserWishlist
 
 func (u UserWishlist) Len() int {
 	return len(u)

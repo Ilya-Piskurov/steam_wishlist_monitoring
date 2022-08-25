@@ -6,11 +6,11 @@ import (
 )
 
 const (
-	// Шлях до файлу, який зберігає steam_id користувача між сесіями.
+	// Path to the file that contains the steam_id between sessions
 	filePath = "steamId.txt"
 )
 
-// Функція, що читає steam_id користувача з файлу.
+//  A function that reads steamId from a file in the "filePath"
 func ReadSteamId() (string, error) {
 	data, err := os.ReadFile(filePath)
 	if err != nil {
@@ -19,7 +19,7 @@ func ReadSteamId() (string, error) {
 	return string(data), nil
 }
 
-// Функція, що записує отриманий steam_id користувача у файл.
+//  A function that write steamId in the "filePath" path
 func SaveSteamId(steamId string) error {
 	file, err := os.Create(filePath)
 	if err != nil {

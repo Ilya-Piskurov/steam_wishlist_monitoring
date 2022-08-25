@@ -10,7 +10,7 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-// Головна функція GUI.
+// Main Function GUI.
 func CreateApplication() {
 
 	a := app.New()
@@ -22,7 +22,8 @@ func CreateApplication() {
 	w.ShowAndRun()
 }
 
-// Функція для завантаження списку бажаного. Приймає steamId та fyne.Window.
+// Function for downloading the wish list.
+// Takes steamId and fyne.Window (for dialog)
 func downloadWishlist(steamId string, window fyne.Window) (UserWishlist, bool) {
 	userWishlist, err := GetUserWishlist(steamId)
 	result := true
@@ -36,7 +37,7 @@ func downloadWishlist(steamId string, window fyne.Window) (UserWishlist, bool) {
 	return userWishlist, result
 }
 
-// Створює зручний для виводу текст з інформації про гру.
+// Creates a convenient line to display information about the game
 func createText(gameInfo GameInfo) (text string) {
 	if len(gameInfo.Subs) > 0 {
 		str := fmt.Sprint(gameInfo.Subs[0].Price)
@@ -51,7 +52,7 @@ func createText(gameInfo GameInfo) (text string) {
 	return
 }
 
-// Створює список fyne-бібліотеки з масиву даних про ігри.
+// Creates a fyne-list from UserWishlist
 func createWishlist(wishlist UserWishlist, ok bool) fyne.CanvasObject {
 	var fyneList fyne.CanvasObject
 	if ok {
@@ -72,7 +73,7 @@ func createWishlist(wishlist UserWishlist, ok bool) fyne.CanvasObject {
 	return fyneList
 }
 
-// Функція для виводу на оновлення графіки.
+// Function for displaying and updating graphics
 func drawGui(w fyne.Window) {
 	steamId, err := ReadSteamId()
 	if err != nil {
