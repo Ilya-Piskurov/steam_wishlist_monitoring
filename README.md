@@ -2,7 +2,7 @@
 A program that allows you to price changes and discounts on your
 Steam wishlist 😎
 
-![Steam Wishlist Monitoring Screenshot](./res/screen.jpg "Steam Wishlist Monitoring")
+![Steam Wishlist Monitoring Screenshot](./res/screen.png "Steam Wishlist Monitoring")
 
 # Build
 You need to download the [fyne](https://developer.fyne.io/started/) dependency.
